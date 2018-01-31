@@ -1,6 +1,7 @@
 import React from 'react'
 import './Body.css'
 import Header from '../Header'
+import Results from "../Results"
 
 
 class Body extends React.Component {
@@ -8,6 +9,7 @@ class Body extends React.Component {
     return (
       <section>
         <Header />
+        <Results />
       </section>
     )
   }
