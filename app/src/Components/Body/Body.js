@@ -1,12 +1,13 @@
 import React from 'react'
 import './Body.css'
+import Header from '../Header'
 
 
 class Body extends React.Component {
   render() {
     return (
       <section>
-        <h1>Hello World!</h1>
+        <Header />
       </section>
     )
   }
