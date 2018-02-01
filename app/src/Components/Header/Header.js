@@ -1,36 +1,45 @@
 import React, {Component} from 'react'
 import './Header.css'
 
-const searchGifs = function() {
-
-  const queryURL = "https://api.giphy.com/v1/gifs/search?q=/"
-  let searchQuery = document.getElementById("searchBox")
-  const apiKey = "&api_key=dc6zaTOxFJmzC"
-
-  console.log("this is working")
-
-  if (!searchQuery) {
-    searchQuery = "matt%20damon"
+class Header extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      pictures: []
+    }
   }
 
-  let gifs = [];
-  let searchResults = document.getElementById('searchResults')
-  let results = document.getElementById('results')
 
-  fetch(queryURL + searchQuery + apiKey).then(results => {
+    searchGifs = () => {
+      const queryURL = "https://api.giphy.com/v1/gifs/search?q=/"
+      let searchQuery = document.getElementById("searchBox")
+      const apiKey = "&api_key=dc6zaTOxFJmzC"
 
-    return results.json()
-  }).then((data) => {
-    console.log(data)
+      console.log("this is working")
 
-    for (var j = 0; j < 25; j++) {
-      let giphy = document.getElementById('giphy').innerHTML = JSON.stringify(data.data[j].images.downsized.url)
-      gifs.push(giphy)
-      results = (<img src={giphy[j]} />)
+      if (!searchQuery) {
+        searchQuery = "matt%20damon"
+      }
+
+      let gifs = [];
+      let searchResults = document.getElementById('searchResults')
+      let results = document.getElementById('results')
+
+      fetch(queryURL + searchQuery + apiKey).then(results => {
+
+        return results.json()
+      }).then((data) => {
+        console.log(data)
+
+        for (var j = 0; j < 25; j++) {
+          let giphy = document.getElementById('giphy').innerHTML = JSON.stringify(data.data[j].images.downsized.url)
+          gifs.push(giphy)
+          results = (<img src={giphy[j]}/>)
+        }
+      })
     }
-  })
-}
-class Header extends React.Component {
+
+
   render() {
     return (<section>
       <div className='jumbotron'>
