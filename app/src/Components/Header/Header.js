@@ -18,7 +18,6 @@ class Header extends React.Component {
       searchQuery = "matt%20damon"
     }
 
-    let searchResults = document.getElementById('searchResults')
     let results = document.getElementById('results')
     let gifs = [];
 
@@ -28,8 +27,22 @@ class Header extends React.Component {
       const arr = data.data
       console.log(arr)
 
-      const pushed = arr.map((gif, i) => gifs.push(JSON.stringify(arr[i].images.downsized.url)))
-      const giphs = gifs.map((img, j) => results.append("<img src= " + gifs[j] + "/>"))
+      const GifItem = (image, i) => {
+        return (<li>
+          <img src={image.JSON.stringify(arr[i].images.downsized.url)}/>
+        </li>)
+      };
+
+      const GifList = (props) => {
+        const gifItems = props.gifs.map((image) => {
+          return <GifItem key={image.id} gif={image}/>
+        });
+
+        return (<ul>{gifItems}</ul>);
+      };
+
+      // const pushed = arr.map((gif, i) => gifs.push(JSON.stringify(arr[i].images.downsized.url)))
+      // const giphs = gifs.map((img, j) => results.append("<img src=" + gifs[j] + "/>"))
 
       console.log("this is working too")
     })
@@ -37,12 +50,12 @@ class Header extends React.Component {
 
   render() {
     return (<section>
-      <div className='jumbotron'>
+      <div className='jumbotron' id="random">
         <div className='vertical-center'>
-          <h1>Giphy Search Tool</h1>
+          <h1>React Giphy Search Tool</h1>
           <h2>by Slater Combes</h2>
           <div className="form-group">
-            <input className="form-control form-control-lg" id="searchBox" type="text"  placeholder="Search and Press Enter"/>
+            <input className="form-control form-control-lg" id="searchBox" type="text" placeholder="Search for Gifs Here"/>
             <br/>
             <button type="submit" className="btn btn-dark" onClick={this.getGifs}>Get Gifs</button>
           </div>
@@ -52,7 +65,9 @@ class Header extends React.Component {
         <Row>
           <Col size="12">
             <div id="searchResults">
-              <div id="results"></div>
+              <div id="results">
+                
+              </div>
             </div>
           </Col>
         </Row>

@@ -1,0 +1,9 @@
+.jumbotron {
+  border-radius: 0px !important;
+  height: 100vh;
+}
+
+.vertical-center {
+  padding-top:25vh;
+  text-align: center;
+}
