@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
         <h1>React Giphy Search Tool</h1>
         <h2>by Slater Combes</h2>
         <div className="search">
-          <input onChange={event => this.onInputChange(event.target.value)}/>
+          <input type="text" onChange={event => this.onInputChange(event.target.value)}/>
         </div>
       </div>
     </div>);
